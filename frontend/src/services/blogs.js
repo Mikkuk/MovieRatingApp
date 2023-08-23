@@ -25,14 +25,14 @@ const update = (id, newObject) => {
     return request.then((response) => response.data)
 }
 
-const updateComments = (id, newObject) => {
-    console.log(newObject)
-    const request = axios.put(`${baseUrl}/${id}/comments`, newObject)
-    return request.then((response) => response.data)
+const comment = async (id, comment) => {
+    console.log(comment)
+    const request = await axios.post(`${baseUrl}/${id}/comments`, { comment }, config())
+    return request.data
 }
 
 const removeBlog = (id) => {
     return axios.delete(`${baseUrl}/${id}`, config())
 }
 
-export default { getAll, create, update, updateComments, removeBlog }
+export default { getAll, create, update, comment, removeBlog }

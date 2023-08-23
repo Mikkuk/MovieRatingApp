@@ -55,6 +55,13 @@ export const reactToBlog = (blog, what) => {
     }
 }
 
+export const commentBlog = (id, comment) => {
+    return async dispatch => {
+        const data = await blogService.comment(id, comment)
+        dispatch(update(data))
+    }
+}
+
 export const createBlog = (blog) => {
     return async (dispatch) => {
         blogService

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { removeBlog, reactToBlog } from '../reducers/blogs'
+import { removeBlog, reactToBlog, commentBlog } from '../reducers/blogs'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useField } from '../hooks'
@@ -46,12 +46,7 @@ const Blog = () => {
 
     const onAddComment = () => {
         console.log(comment.fields.value)
-        const commented = {
-            ...blog,
-            comments: blog.comments.concat(comment.fields.value),
-            user: blog.user.id,
-        }
-        dispatch(reactToBlog(commented, 'commented'))
+        dispatch(commentBlog(blog.id, comment.fields.value))
         comment.reset()
     }
 
