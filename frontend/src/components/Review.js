@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { removeBlog, reactToBlog, commentBlog } from '../reducers/blogs'
+import { removeReview, reactToReview, commentReview } from '../reducers/reviews'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useField } from '../hooks'
 
 import { Button } from '.'
 
-const Blog = () => {
+const Review = () => {
     const { id } = useParams()
-    const blog = useSelector((state) => state.blogs.find((u) => u.id === id))
+    const review = useSelector((state) => state.reviews.find((u) => u.id === id))
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -16,53 +16,54 @@ const Blog = () => {
 
     const user = useSelector((state) => state.user)
 
-    if (!blog) {
+    if (!review) {
         return null
     }
 
-    const own = user && blog.user && user.username === blog.user.username
+    const own = user && review.user && user.username === review.user.username
 
-    const addedBy = blog.user && blog.user.name ? blog.user.name : 'anonymous'
+    const addedBy =
+        review.user && review.user.name ? review.user.name : 'anonymous'
 
-    const onRemoveBlog = () => {
-        const ok = window.confirm(`remove '${blog.title}' by ${blog.author}?`)
+    const onremoveReview = () => {
+        const ok = window.confirm(`remove '${review.title}' by ${review.author}?`)
 
         if (!ok) {
             return
         }
 
-        dispatch(removeBlog(blog.id))
+        dispatch(removeReview(review.id))
         navigate('/')
     }
 
     const onLike = async () => {
         const liked = {
-            ...blog,
-            likes: (blog.likes || 0) + 1,
-            user: blog.user.id,
+            ...review,
+            likes: (review.likes || 0) + 1,
+            user: review.user.id,
         }
-        dispatch(reactToBlog(liked, 'liked'))
+        dispatch(reactToReview(liked, 'liked'))
     }
 
     const onAddComment = () => {
         console.log(comment.fields.value)
-        dispatch(commentBlog(blog.id, comment.fields.value))
+        dispatch(commentReview(review.id, comment.fields.value))
         comment.reset()
     }
 
     return (
         <div>
             <h2>
-                {blog.title} {blog.author}
+                {review.title} {review.author}
             </h2>
             <div>
-                <a href={blog.url}>{blog.url}</a>
+                {review.reviewText}
             </div>
             <div>
-                {blog.likes} likes <Button onClick={onLike}>like</Button>
+                {review.likes} likes <Button onClick={onLike}>like</Button>
             </div>
             <div>added by {addedBy}</div>
-            {own && <Button onClick={onRemoveBlog}>remove</Button>}
+            {own && <Button onClick={onremoveReview}>remove</Button>}
 
             <h3>comments</h3>
 
@@ -72,12 +73,10 @@ const Blog = () => {
             </div>
 
             <ul>
-                {blog.comments && blog.comments.map((c, i) => (
-                    <li key={i}>{c}</li>
-                ))}
+                {review.comments && review.comments.map((c, i) => <li key={i}>{c}</li>)}
             </ul>
         </div>
     )
 }
 
-export default Blog
+export default Review

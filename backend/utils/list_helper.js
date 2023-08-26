@@ -1,67 +1,67 @@
 var _ = require('lodash')
 
-const dummy = (blogs) => {
+const dummy = (reviews) => {
     return 1
   }
 
-const totalLikes = (blogs) => {
+const totalLikes = (reviews) => {
 
     let totalLikes = 0
-    blogs.forEach(blog => {
-        totalLikes += blog.likes
+    reviews.forEach(review => {
+        totalLikes += review.likes
     })
 
-    return blogs.length === 0
+    return reviews.length === 0
     ? 0
     : totalLikes
 }
 
-const favoriteBlog = (blogs) => {
+const favoriteReview = (reviews) => {
 
-    let favoriteBlog = blogs[0]
-    blogs.forEach(blog => {
-        if (blog.likes > favoriteBlog.likes){
-            favoriteBlog = blog
+    let favoriteReview = reviews[0]
+    reviews.forEach(review => {
+        if (review.likes > favoriteReview.likes){
+            favoriteReview = review
         }
     })
 
-    const resultBlog = {
-        title: favoriteBlog.title,
-        author: favoriteBlog.author,
-        likes: favoriteBlog.likes
+    const resultReview = {
+        title: favoriteReview.title,
+        author: favoriteReview.author,
+        likes: favoriteReview.likes
     }
-    return resultBlog 
+    return resultReview 
 }
 
-const mostBlogs = (blogs) => {
-    let mostBlogs = _.filter(blogs, { author: blogs[0].author })
-    blogs.forEach(blog => {
-        let i = _.filter(blogs, { author: blog.author })
-        if (i.length > mostBlogs.length){
-            mostBlogs = i
+const mostReviews = (reviews) => {
+    let mostReviews = _.filter(reviews, { author: reviews[0].author })
+    reviews.forEach(review => {
+        let i = _.filter(reviews, { author: review.author })
+        if (i.length > mostReviews.length){
+            mostReviews = i
         }
     })
 
-    const resultBlog = {
-        author: mostBlogs[0].author,
-        blogs: mostBlogs.length
+    const resultReview = {
+        author: mostReviews[0].author,
+        reviews: mostReviews.length
     }
-    return resultBlog 
+    return resultReview 
 }
 
-const mostLikes = (blogs) => {
+const mostLikes = (reviews) => {
     let mostLikes = 0
     let author
 
-    blogs.forEach(blog => {
-        let authorBlogs = _.filter(blogs, { author: blog.author })
+    reviews.forEach(review => {
+        let authorReviews = _.filter(reviews, { author: review.author })
         let authorLikes = 0
-        authorBlogs.forEach(authorBlog => {
-            authorLikes += authorBlog.likes
+        authorReviews.forEach(authorreview => {
+            authorLikes += authorreview.likes
         })
         if (authorLikes > mostLikes){
             mostLikes = authorLikes
-            author = blog.author
+            author = review.author
         }
     })
 
@@ -75,7 +75,7 @@ const mostLikes = (blogs) => {
   module.exports = {
     dummy,
     totalLikes,
-    favoriteBlog,
-    mostBlogs,
+    favoriteReview,
+    mostReviews,
     mostLikes
   }

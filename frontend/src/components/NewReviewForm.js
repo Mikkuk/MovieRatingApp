@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createBlog } from '../reducers/blogs'
+import { createReview } from '../reducers/reviews'
 
-const NewBlogForm = ({ togglableRef }) => {
+const NewReviewForm = ({ togglableRef }) => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
-    const [url, setUrl] = useState('')
+    const [reviewText, setReviewText] = useState('')
 
     const dispatch = useDispatch()
 
     const handleSubmit = (event) => {
         event.preventDefault()
         togglableRef.current.toggleVisibility()
-        dispatch(createBlog({ title, author, url, likes: 0 }))
+        dispatch(createReview({ title, author, reviewText, likes: 0 }))
         setAuthor('')
         setTitle('')
-        setUrl('')
+        setReviewText('')
     }
 
     return (
@@ -24,12 +24,12 @@ const NewBlogForm = ({ togglableRef }) => {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    title
+                title
                     <input
                         value={title}
                         onChange={({ target }) => setTitle(target.value)}
                         id="title"
-                        placeholder="title of the blog"
+                        placeholder="title of the review"
                     />
                 </div>
                 <div>
@@ -38,24 +38,24 @@ const NewBlogForm = ({ togglableRef }) => {
                         value={author}
                         onChange={({ target }) => setAuthor(target.value)}
                         id="author"
-                        placeholder="author of the blog"
+                        placeholder="author of the review"
                     />
                 </div>
                 <div>
-                    url
+                    review
                     <input
-                        value={url}
-                        onChange={({ target }) => setUrl(target.value)}
-                        id="url"
-                        placeholder="url of the blog"
+                        value={reviewText}
+                        onChange={({ target }) => setReviewText(target.value)}
+                        id="reviewText"
+                        placeholder="review text"
                     />
                 </div>
                 <button id="create-butto" type="submit">
-                    create
+                create
                 </button>
             </form>
         </div>
     )
 }
 
-export default NewBlogForm
+export default NewReviewForm

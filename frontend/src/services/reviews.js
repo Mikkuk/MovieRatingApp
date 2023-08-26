@@ -1,6 +1,6 @@
 import axios from 'axios'
 import userService from './user'
-const baseUrl = '/api/blogs'
+const baseUrl = '/api/reviews'
 
 const config = () => {
     return {
@@ -31,8 +31,8 @@ const comment = async (id, comment) => {
     return request.data
 }
 
-const removeBlog = (id) => {
+const removeReview = (id) => {
     return axios.delete(`${baseUrl}/${id}`, config())
 }
 
-export default { getAll, create, update, comment, removeBlog }
+export default { getAll, create, update, comment, removeReview }

@@ -2,20 +2,20 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Blog from './Blog'
+import Review from './Review'
 
-describe('Blog tests', () => {
+describe('Review tests', () => {
     let container
     let onLike = jest.fn()
 
     beforeEach(() => {
-        const blog = {
+        const review = {
             title: 'test-title',
             author: 'test-author',
-            url: 'test-url',
+            body: 'test-body',
             likes: 2,
         }
-        container = render(<Blog blog={blog} like={onLike} />)
+        container = render(<Review review={review} like={onLike} />)
     })
 
     test('renders title and author', () => {
@@ -25,13 +25,13 @@ describe('Blog tests', () => {
         )
     })
 
-    test('url and likes are displayed after clicking the view button', () => {
+    test('body and likes are displayed after clicking the view button', () => {
         const button = screen.getByText('view')
         userEvent.click(button)
 
         const div = container.container.querySelector('.togglableContent')
         expect(div).toHaveStyle('display: none')
-        expect(container.container).toHaveTextContent('test-url', '2')
+        expect(container.container).toHaveTextContent('test-body', '2')
     })
 
     test('Event handler is called twice when like button is clicked twice', () => {

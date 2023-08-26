@@ -12,7 +12,7 @@ const Users = () => {
                     <tr>
                         <td></td>
                         <td>
-                            <strong>blogs created</strong>
+                            <strong>reviews created</strong>
                         </td>
                     </tr>
                     {users.map((u) => (
@@ -20,7 +20,7 @@ const Users = () => {
                             <td>
                                 <Link to={`/users/${u.id}`}>{u.name}</Link>
                             </td>
-                            <td>{u.blogs.length}</td>
+                            <td>{u.reviews.length}</td>
                         </tr>
                     ))}
                 </tbody>

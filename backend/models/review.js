@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
-const blogSchema = mongoose.Schema({
+const reviewSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
   },
   author: String,
-  url: {
+  reviewText: {
     type: String,
     required: true,
   },
@@ -18,7 +18,7 @@ const blogSchema = mongoose.Schema({
   },
 })
 
-blogSchema.set('toJSON', {
+reviewSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -26,4 +26,4 @@ blogSchema.set('toJSON', {
   },
 })
 
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = mongoose.model('Review', reviewSchema)

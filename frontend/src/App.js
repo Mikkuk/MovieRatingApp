@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Routes, Route, Link } from 'react-router-dom'
 
-import Blogs from './components/Blogs'
-import Blog from './components/Blog'
+import Reviews from './components/Reviews'
+import Review from './components/Review'
 import LoginForm from './components/LoginForm'
-import NewBlogForm from './components/NewBlogForm'
+import NewReviewForm from './components/NewReviewForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 import Users from './components/Users'
@@ -17,18 +17,18 @@ import { Navigation, Page, NavButton, Footer } from './components'
 import userService from './services/user'
 
 import { setNotification } from './reducers/notification'
-import { initializeBlogs } from './reducers/blogs'
+import { initializeReviews } from './reducers/reviews'
 import { initializeUsers } from './reducers/users'
 import { logoutUser, loginUser } from './reducers/user'
 
 const App = () => {
-    const blogFormRef = useRef()
+    const ReviewFormRef = useRef()
 
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user)
 
     useEffect(() => {
-        dispatch(initializeBlogs())
+        dispatch(initializeReviews())
         dispatch(initializeUsers())
     }, [])
 
@@ -62,7 +62,7 @@ const App = () => {
         <Page>
             <Navigation>
                 <Link style={padding} to="/">
-                    blogs
+                    Reviews
                 </Link>
                 <Link style={padding} to="/users">
                     users
@@ -75,15 +75,15 @@ const App = () => {
 
             <Notification />
 
-            <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-                <NewBlogForm togglableRef={blogFormRef} />
+            <Togglable buttonLabel="create new Review" ref={ReviewFormRef}>
+                <NewReviewForm togglableRef={ReviewFormRef} />
             </Togglable>
 
             <Routes>
-                <Route path="/" element={<Blogs />} />
+                <Route path="/" element={<Reviews />} />
             </Routes>
             <Routes>
-                <Route path="/blogs/:id" element={<Blog />} />
+                <Route path="/reviews/:id" element={<Review />} />
             </Routes>
             <Routes>
                 <Route path="/users" element={<Users />} />
@@ -92,7 +92,7 @@ const App = () => {
                 <Route path="/users/:id" element={<User />} />
             </Routes>
 
-            <Footer>Full stack open, app form part 7</Footer>
+            <Footer>Movie rating app</Footer>
         </Page>
     )
 }
