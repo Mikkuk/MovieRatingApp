@@ -6,4 +6,10 @@ const getAll = () => {
     return request.then((response) => response.data)
 }
 
-export default { getAll }
+const create = async (newObject) => {
+    console.log(newObject, 'data in sevices')
+    const response = await axios.post(baseUrl, newObject)
+    return response.data
+}
+
+export default { getAll, create }

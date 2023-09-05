@@ -6,6 +6,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Reviews from './components/Reviews'
 import Review from './components/Review'
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 import NewReviewForm from './components/NewReviewForm'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
@@ -50,6 +51,7 @@ const App = () => {
             <Page>
                 <Notification />
                 <LoginForm />
+                <RegisterForm />
             </Page>
         )
     }

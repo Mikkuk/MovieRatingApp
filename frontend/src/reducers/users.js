@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import userService from '../services/users'
+import usersService from '../services/users'
+import { setNotification } from './notification'
 
 const slice = createSlice({
     name: 'users',
@@ -13,11 +14,38 @@ const slice = createSlice({
 
 export const initializeUsers = () => {
     return async (dispatch) => {
-        userService.getAll().then((response) => {
+        usersService.getAll().then((response) => {
             dispatch(initializeWith(response))
         })
     }
 }
 
-const { initializeWith } = slice.actions
+export const createUser = (user) => {
+    return async (dispatch) => {
+        console.log(user, 'in reducer')
+        usersService
+            .create(user)
+            .then((response) => {
+                dispatch(addNew(response))
+                dispatch(
+                    setNotification({
+                        message: `a new user '${user.username}' added`,
+                        type: 'info',
+                    })
+                )
+            })
+            .catch((error) => {
+                dispatch(
+                    setNotification({
+                        message:
+                            'Registering user failed: ' +
+                            error.response.data.error,
+                        type: 'alert',
+                    })
+                )
+            })
+    }
+}
+
+const { initializeWith, addNew } = slice.actions
 export default slice.reducer
