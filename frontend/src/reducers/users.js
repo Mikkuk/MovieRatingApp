@@ -9,6 +9,9 @@ const slice = createSlice({
         initializeWith(state, { payload }) {
             return payload
         },
+        addNew(state, { payload }) {
+            return state.concat(payload)
+        },
     },
 })
 
@@ -30,17 +33,18 @@ export const createUser = (user) => {
                 dispatch(
                     setNotification({
                         message: `a new user '${user.username}' added`,
-                        type: 'info',
+                        type: 'success',
                     })
                 )
             })
             .catch((error) => {
+                console.log(error)
                 dispatch(
                     setNotification({
                         message:
                             'Registering user failed: ' +
                             error.response.data.error,
-                        type: 'alert',
+                        type: 'error',
                     })
                 )
             })

@@ -48,7 +48,7 @@ export const reactToReview = (review, what) => {
             dispatch(
                 setNotification({
                     message: `you ${what} '${review.title}' by ${review.author}`,
-                    type: 'info',
+                    type: 'success',
                 })
             )
         })
@@ -71,7 +71,7 @@ export const createReview = (review) => {
                 dispatch(
                     setNotification({
                         message: `a new review '${review.title}' by ${review.author} added`,
-                        type: 'info',
+                        type: 'success',
                     })
                 )
             })
@@ -81,7 +81,7 @@ export const createReview = (review) => {
                         message:
                             'creating a review failed: ' +
                             error.response.data.error,
-                        type: 'alert',
+                        type: 'error',
                     })
                 )
             })

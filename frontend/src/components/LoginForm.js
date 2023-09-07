@@ -6,7 +6,8 @@ import { useField } from '../hooks'
 
 import { setNotification } from '../reducers/notification'
 
-import { Button, Input } from '.'
+import { TextField } from '@mui/material'
+import { Button } from '@mui/material'
 
 const LoginForm = () => {
     const username = useField('text')
@@ -29,10 +30,10 @@ const LoginForm = () => {
                 userService.setUser(user)
 
                 dispatch(loginUser(user))
-                notify(`${user.name} logged in!`)
+                notify(`${user.name} logged in!`, 'success')
             })
             .catch(() => {
-                notify('wrong username/password', 'alert')
+                notify('wrong username/password', 'error')
             })
     }
 
@@ -42,14 +43,12 @@ const LoginForm = () => {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    username
-                    <Input {...username.fields} />
+                    <TextField label="username" {...username.fields} />
                 </div>
                 <div>
-                    password
-                    <Input {...password.fields} />
+                    <TextField label="password" {...password.fields} />
                 </div>
-                <Button id="login-button" type="submit">
+                <Button variant="contained" color="primary" type="submit">
                     login
                 </Button>
             </form>

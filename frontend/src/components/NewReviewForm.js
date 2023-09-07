@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createReview } from '../reducers/reviews'
+import { TextField } from '@mui/material'
+import { Button } from '@mui/material'
 
 const NewReviewForm = ({ togglableRef }) => {
     const [title, setTitle] = useState('')
@@ -20,12 +22,11 @@ const NewReviewForm = ({ togglableRef }) => {
 
     return (
         <div>
-            <h2>Create new</h2>
+            <h2>Create new Review</h2>
 
             <form onSubmit={handleSubmit}>
                 <div>
-                title
-                    <input
+                    <TextField
                         value={title}
                         onChange={({ target }) => setTitle(target.value)}
                         id="title"
@@ -33,8 +34,7 @@ const NewReviewForm = ({ togglableRef }) => {
                     />
                 </div>
                 <div>
-                    author
-                    <input
+                    <TextField
                         value={author}
                         onChange={({ target }) => setAuthor(target.value)}
                         id="author"
@@ -42,17 +42,16 @@ const NewReviewForm = ({ togglableRef }) => {
                     />
                 </div>
                 <div>
-                    review
-                    <input
+                    <TextField
                         value={reviewText}
                         onChange={({ target }) => setReviewText(target.value)}
                         id="reviewText"
                         placeholder="review text"
                     />
                 </div>
-                <button id="create-butto" type="submit">
+                <Button variant="contained" color="primary" type="submit">
                 create
-                </button>
+                </Button>
             </form>
         </div>
     )

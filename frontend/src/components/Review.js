@@ -4,7 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { useField } from '../hooks'
 
-import { Button } from '.'
+import { TextField } from '@mui/material'
+import { Button } from '@mui/material'
 
 const Review = () => {
     const { id } = useParams()
@@ -60,16 +61,16 @@ const Review = () => {
                 {review.reviewText}
             </div>
             <div>
-                {review.likes} likes <Button onClick={onLike}>like</Button>
+                {review.likes} likes <Button variant="contained" color="primary" onClick={onLike}>like</Button>
             </div>
             <div>added by {addedBy}</div>
-            {own && <Button onClick={onremoveReview}>remove</Button>}
+            {own && <Button variant="contained" color="primary" onClick={onremoveReview}>remove</Button>}
 
             <h3>comments</h3>
 
             <div>
-                <input {...comment.fields} />{' '}
-                <Button onClick={onAddComment}> add comment</Button>
+                <TextField label="comment" {...comment.fields} />{' '}
+                <Button variant="contained" color="primary" onClick={onAddComment}> add comment</Button>
             </div>
 
             <ul>

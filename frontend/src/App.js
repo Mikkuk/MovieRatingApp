@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Routes, Route, Link } from 'react-router-dom'
 
+
+import {
+    Container,
+    AppBar,
+    Toolbar,
+    Button
+} from '@mui/material'
+
 import Reviews from './components/Reviews'
 import Review from './components/Review'
 import LoginForm from './components/LoginForm'
@@ -12,8 +20,6 @@ import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 import Users from './components/Users'
 import User from './components/User'
-
-import { Navigation, Page, NavButton, Footer } from './components'
 
 import userService from './services/user'
 
@@ -43,37 +49,36 @@ const App = () => {
     const logout = () => {
         userService.clearUser()
         dispatch(logoutUser())
-        dispatch(setNotification({ message: 'good bye!', type: 'info' }))
+        dispatch(setNotification({ message: 'good bye!', type: 'success' }))
     }
 
     if (user === null) {
         return (
-            <Page>
+            <Container>
                 <Notification />
                 <LoginForm />
                 <RegisterForm />
-            </Page>
+            </Container>
         )
     }
 
-    const padding = {
-        padding: 5,
-    }
 
     return (
-        <Page>
-            <Navigation>
-                <Link style={padding} to="/">
-                    Reviews
-                </Link>
-                <Link style={padding} to="/users">
-                    users
-                </Link>
-                <span style={{ paddingLeft: 5, paddingRight: 5 }}>
-                    {user.name} logged in
-                </span>
-                <NavButton onClick={logout}>logout</NavButton>
-            </Navigation>
+        <Container>
+            <AppBar position="static">
+                <Toolbar>
+                    <Button color="inherit" component={Link} to="/">
+                        Reviews
+                    </Button>
+                    <Button color="inherit" component={Link} to="/users">
+                        users
+                    </Button>
+                    <span style={{ paddingLeft: 5, paddingRight: 5 }}>
+                        {user.name} logged in
+                    </span>
+                    <Button color="inherit" component={Link} onClick={logout}>logout</Button>
+                </Toolbar>
+            </AppBar>
 
             <Notification />
 
@@ -93,9 +98,11 @@ const App = () => {
             <Routes>
                 <Route path="/users/:id" element={<User />} />
             </Routes>
-
-            <Footer>Movie rating app</Footer>
-        </Page>
+            <div>
+                <br />
+                <em>Movie rating app</em>
+            </div>
+        </Container>
     )
 }
 

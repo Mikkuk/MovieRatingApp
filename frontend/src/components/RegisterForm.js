@@ -2,9 +2,8 @@ import { useDispatch } from 'react-redux'
 import { createUser } from '../reducers/users'
 import { useField } from '../hooks'
 
-import { setNotification } from '../reducers/notification'
-
-import { Button, Input } from '.'
+import { TextField } from '@mui/material'
+import { Button } from '@mui/material'
 
 const RegisterForm = () => {
     const usernameValue = useField('username')
@@ -13,17 +12,13 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch()
 
-    const notify = (message, type = 'info') => {
-        dispatch(setNotification({ message, type }))
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault()
         const username = usernameValue.fields.value
         const name = nameValue.fields.value
         const password = passwordValue.fields.value
         dispatch(createUser({ username, name, password }))
-        console.log(username, name, password);
+        console.log(username, name, password)
     }
 
     return (
@@ -32,18 +27,15 @@ const RegisterForm = () => {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    username
-                    <Input {...usernameValue.fields} />
+                    <TextField label="username" {...usernameValue.fields} />
                 </div>
                 <div>
-                    name
-                    <Input {...nameValue.fields} />
+                    <TextField label="name" {...nameValue.fields} />
                 </div>
                 <div>
-                    password
-                    <Input {...passwordValue.fields} />
+                    <TextField label="password" {...passwordValue.fields} />
                 </div>
-                <Button id="register-button" type="submit">
+                <Button variant="contained" color="primary" type="submit">
                     register
                 </Button>
             </form>
