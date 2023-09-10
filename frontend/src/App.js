@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Routes, Route, Link } from 'react-router-dom'
 
-
 import {
     Container,
     AppBar,
@@ -54,7 +53,7 @@ const App = () => {
 
     if (user === null) {
         return (
-            <Container>
+            <Container sx={{ display: 'flex', textAlign: 'center', flexDirection: 'column' }}>
                 <Notification />
                 <LoginForm />
                 <RegisterForm />
