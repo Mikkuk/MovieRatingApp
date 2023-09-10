@@ -25,7 +25,6 @@ export const initializeUsers = () => {
 
 export const createUser = (user) => {
     return async (dispatch) => {
-        console.log(user, 'in reducer')
         usersService
             .create(user)
             .then((response) => {
@@ -38,7 +37,6 @@ export const createUser = (user) => {
                 )
             })
             .catch((error) => {
-                console.log(error)
                 dispatch(
                     setNotification({
                         message:

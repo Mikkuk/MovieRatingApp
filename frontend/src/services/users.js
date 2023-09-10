@@ -7,7 +7,6 @@ const getAll = () => {
 }
 
 const create = async (newObject) => {
-    console.log(newObject, 'data in sevices')
     const response = await axios.post(baseUrl, newObject)
     return response.data
 }

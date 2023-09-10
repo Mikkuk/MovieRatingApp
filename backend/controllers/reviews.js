@@ -32,7 +32,6 @@ router.post('/', async (request, response) => {
 
 router.post('/:id/comments', async (request, response) => {
   const { comment } = request.body
-  console.log(comment, request.body)
   const review = await Review.findById(request.params.id)
 
   review.comments = review.comments.concat(comment)

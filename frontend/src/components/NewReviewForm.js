@@ -27,29 +27,32 @@ const NewReviewForm = ({ togglableRef }) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <TextField
+                        sx={{ mt: '5px' }}
                         value={title}
                         onChange={({ target }) => setTitle(target.value)}
                         id="title"
-                        placeholder="title of the review"
+                        placeholder="title of the movie"
                     />
                 </div>
                 <div>
                     <TextField
+                        sx={{ mt: '5px' }}
                         value={author}
                         onChange={({ target }) => setAuthor(target.value)}
                         id="author"
-                        placeholder="author of the review"
+                        placeholder="director of the movie"
                     />
                 </div>
                 <div>
                     <TextField
+                        sx={{ mt: '5px' }}
                         value={reviewText}
                         onChange={({ target }) => setReviewText(target.value)}
                         id="reviewText"
                         placeholder="review text"
                     />
                 </div>
-                <Button variant="contained" color="primary" type="submit">
+                <Button sx={{ mt: '5px' }} variant="contained" color="primary" type="submit">
                 create
                 </Button>
             </form>

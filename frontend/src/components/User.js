@@ -1,5 +1,13 @@
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+    Paper,
+} from '@mui/material'
 
 const User = () => {
     const { id } = useParams()
@@ -12,15 +20,20 @@ const User = () => {
 
     return (
         <div>
-            <h2>{user.name}</h2>
-
-            <h3>added reviews</h3>
-
-            <ul>
-                {user.reviews.map((b) => (
-                    <li key={b.id}>{b.title}</li>
-                ))}
-            </ul>
+            <h2>Reviews by {user.name}</h2>
+            <TableContainer id="user" component={Paper}>
+                <Table>
+                    <TableBody>
+                        {user.reviews.map((b) => (
+                            <TableRow key={b.id}>
+                                <TableCell>
+                                    {b.title}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     )
 }

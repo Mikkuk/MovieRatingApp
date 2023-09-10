@@ -43,12 +43,12 @@ const LoginForm = () => {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <TextField label="username" {...username.fields} />
+                    <TextField  sx={{ mt: '5px' }} label="username" {...username.fields} />
                 </div>
                 <div>
-                    <TextField label="password" {...password.fields} />
+                    <TextField sx={{ mt: '5px' }} label="password" {...password.fields} />
                 </div>
-                <Button variant="contained" color="primary" type="submit">
+                <Button sx={{ mt: '5px' }} variant="contained" color="primary" type="submit">
                     login
                 </Button>
             </form>

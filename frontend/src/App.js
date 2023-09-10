@@ -65,7 +65,7 @@ const App = () => {
 
     return (
         <Container>
-            <AppBar position="static">
+            <AppBar sx={{ mt: '2px' }} position="static">
                 <Toolbar>
                     <Button color="inherit" component={Link} to="/">
                         Reviews
@@ -76,13 +76,13 @@ const App = () => {
                     <span style={{ paddingLeft: 5, paddingRight: 5 }}>
                         {user.name} logged in
                     </span>
-                    <Button color="inherit" component={Link} onClick={logout}>logout</Button>
+                    <Button  color="inherit" component={Link} onClick={logout}>logout</Button>
                 </Toolbar>
             </AppBar>
 
             <Notification />
 
-            <Togglable buttonLabel="create new Review" ref={ReviewFormRef}>
+            <Togglable  buttonLabel="create new Review" ref={ReviewFormRef}>
                 <NewReviewForm togglableRef={ReviewFormRef} />
             </Togglable>
 

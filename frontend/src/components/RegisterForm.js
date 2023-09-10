@@ -18,7 +18,6 @@ const RegisterForm = () => {
         const name = nameValue.fields.value
         const password = passwordValue.fields.value
         dispatch(createUser({ username, name, password }))
-        console.log(username, name, password)
     }
 
     return (
@@ -27,15 +26,15 @@ const RegisterForm = () => {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <TextField label="username" {...usernameValue.fields} />
+                    <TextField sx={{ mt: '5px' }} label="username" {...usernameValue.fields} />
                 </div>
                 <div>
-                    <TextField label="name" {...nameValue.fields} />
+                    <TextField sx={{ mt: '5px' }} label="name" {...nameValue.fields} />
                 </div>
                 <div>
-                    <TextField label="password" {...passwordValue.fields} />
+                    <TextField sx={{ mt: '5px' }} label="password" {...passwordValue.fields} />
                 </div>
-                <Button variant="contained" color="primary" type="submit">
+                <Button sx={{ mt: '5px' }} variant="contained" color="primary" type="submit">
                     register
                 </Button>
             </form>
